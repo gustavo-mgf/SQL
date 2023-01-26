@@ -1,0 +1,58 @@
+-- Celebrity profession and companies --
+
+CREATE TABLE celebrity
+(id integer primary key autoincrement,
+full_name text,
+age integer,
+profession text)
+;
+
+INSERT INTO celebrity (full_name, age, profession) VALUES
+("Dr.Dre", 57, "Music Producer/Rapper"),
+("Drew Barrymore", 47, "Film Actor"),
+("Ryan Renolds", 46, "Film Actor"),
+("Drake",36, "TV Actor/Rapper"),
+("Jessica Alba", 41, "Film Actor/Model")
+;
+
+CREATE TABLE company
+(id integer primary key autoincrement,
+celebrity_id integer,
+title text,
+annual_revenue integer)
+;
+
+INSERT INTO company (celebrity_id, title, annual_revenue) VALUES
+(1, "Beats", 1500000000),
+(2, "Flower Beauty",50000000),
+(2, "Flower House", 15000000),
+(3, "Mint Mobile", 100000000),
+(3, "Aviation Gin", 5000000),
+(4, "Virginia Black Whiskey", 5000000),
+(5, "The Honest Company", 318000000)
+;
+
+-- Display celebrity companies --
+
+SELECT a.full_name, b.title AS company 
+FROM celebrity a
+JOIN company b
+ON a.id=b.celebrity_id
+ORDER BY a.full_name
+;
+
+-- Display annual revenue for all celebrity companies ordered from highest to lowest --
+
+SELECT a.annual_revenue, a.title AS company, b.full_name
+FROM company a
+JOIN celebrity b 
+ON b.id=a.celebrity_id
+ORDER BY a.annual_revenue desc
+;
+
+-- What celebrities are actors? --
+
+SELECT full_name, age, profession
+FROM celebrity
+WHERE profession LIKE "%actor%"
+;
