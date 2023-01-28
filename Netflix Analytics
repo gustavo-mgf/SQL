@@ -9,14 +9,13 @@
 	
 	2. When was the most recent batch of tv shows and/or movies added to the database?
 	
-	SELECT MAX(date(date))
+	SELECT MAX(date(date_added))
   	FROM "CharlotteChaze/BreakIntoTech"."netflix_titles_info"
   	;
 	
 	3. List all the movies and tv shows in alphabetical order. 
 
 	SELECT 
-	type,
 	title
 	FROM "CharlotteChaze/BreakIntoTech"."netflix_titles_info"
 	ORDER BY title
@@ -39,5 +38,5 @@
 	release_year
 	FROM "CharlotteChaze/BreakIntoTech"."netflix_titles_info"
 	WHERE type='Movie'
-	ORDER BY release_year asc
+	ORDER BY release_year
 	LIMIT 1;
